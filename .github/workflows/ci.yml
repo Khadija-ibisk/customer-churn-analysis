@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test-and-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Installer les dépendances
+        run: pip install -r requirements.txt
+
+      - name: Tests unitaires
+        run: pytest -v
+
+      - name: Exécuter le pipeline complet
+        run: python run_pipeline.py
+
+      - name: Publier le rapport (artefact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: rapport
+          path: reports/
+
+      - name: Commiter le rapport et les graphiques
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/
+          git diff --cached --quiet || (git commit -m "docs: mise à jour du rapport généré [skip ci]" && git push)
