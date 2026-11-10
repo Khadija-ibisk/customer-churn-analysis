@@ -1,0 +1,10 @@
+{
+  "modele": "Régression logistique",
+  "seuil": 0.43,
+  "roc_auc": 0.8058,
+  "accuracy": 0.704,
+  "precision": 0.5683,
+  "recall": 0.841,
+  "f1": 0.6783,
+  "taille_test": 1000
+}
