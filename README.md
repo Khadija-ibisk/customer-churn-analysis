@@ -1,6 +1,5 @@
 # 📉 Analyse et prédiction du churn clients – Opérateur télécom
 
-[![CI](https://github.com/Khadija-ibisk/customer-churn-analysis/actions/workflows/ci.yml/badge.svg)](https://github.com/Khadija-ibisk/customer-churn-analysis/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![Licence](https://img.shields.io/badge/licence-MIT-green)
 
